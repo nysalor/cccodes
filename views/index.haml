@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %meta{ charset: "utf-8" }/
+    %title #{@title}
+    %link{ href: "/css/bootstrap.min.css", rel: "stylesheet" }/
+    :css
+      body {
+      padding-top: 60px;
+      }
+
+  %body
+    .container
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            %h1
+              %a.brand{ href: '/' } CCCodes
+            .nav-collapse
+              %ul.nav
+                %li
+                  %a{ href: '/' }ホーム
+
+    #content.container
+      %p
+        %form{ action: "/create", method: "post" }
+          %p
+            文字数:
+            %select{name: 'length'}
+              - (5..20).to_a.each do |num|
+                %option{:value => num} #{num}
+            %p
+            生成数:
+            %input{ type: "texfield", name: "num", size: 2, default: 2000 }
+
+            %input{ type: "submit", value: "send" }
